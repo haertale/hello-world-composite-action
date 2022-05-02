@@ -5,6 +5,9 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
+  some-file:
+    description: 'The path to a file'
+    required: true
 outputs:
   random-number:
     description: "Random number"
@@ -18,6 +21,10 @@ runs:
       run: echo "::set-output name=random-number::$(echo $RANDOM)"
       shell: bash
     - run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash          
+      shell: bash
+    - run: echo The file provided is ${{ inputs.some-file }}.
+      shell: bash
+    - run: ls -als ${{ inputs.some-file }}
+      shell: bash
     - run: goodbye.sh
       shell: bash
