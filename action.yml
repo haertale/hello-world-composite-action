@@ -26,5 +26,10 @@ runs:
       shell: bash
     - run: ls -als ${{ inputs.some-file }}
       shell: bash
+    - name: Upload some file
+      uses: actions/upload-artifact@v2
+      with:
+        name: some-file
+        path: ${{ inputs.some-file }}
     - run: goodbye.sh
       shell: bash
